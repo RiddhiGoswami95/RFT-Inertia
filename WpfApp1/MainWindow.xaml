@@ -166,6 +166,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
+                            
                             <DataGridTextColumn Header="R Diameter" Binding="{Binding Dia}" Width="2*"/>
                             <DataGridTextColumn Header="Number" Binding="{Binding Num}" Width="2*"/>
                             <DataGridTextColumn Header="Delta Y" Binding="{Binding DeltaY}" Width="2*"/>
