@@ -145,7 +145,10 @@
                     
                     <!--Label for circular sections-->
                     
-                    <!-- <Label FontFamily="{StaticResource ArchDaughter}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource inversebooleanToVisibilityConverter}}" 
+                    <!-- Alternate Style
+                    
+                    
+                    <Label FontFamily="{StaticResource ArchDaughter}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource inversebooleanToVisibilityConverter}}" 
                             Grid.Row="2" Grid.Column="0" Content="Radius" FontWeight="Bold"/>
                     <Label FontFamily="{StaticResource ArchDaughter}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource inversebooleanToVisibilityConverter}}" 
                             Grid.Row="3" Grid.Column="0" Content="Diameter" FontWeight="Bold"/>
@@ -156,21 +159,47 @@
                     
                     <Label FontFamily="{StaticResource ArchDaughter}" Grid.Row="4" Grid.Column="0" Content="Cover" FontWeight="Bold"/>
 
-                    <TextBlock FontFamily="{StaticResource ArchDaughter}" Grid.Row="6" Grid.Column="0" Text="Rebar A" FontWeight="ExtraBold"/>
-                    <TextBlock Grid.Row="7" Grid.Column="0" FontWeight="Bold"> Rebar
-                        I<Run FontSize="7pt" BaselineAlignment="TextBottom">x</Run>
-                    </TextBlock>
-                    <TextBlock Grid.Row="8" Grid.Column="0" FontWeight="Bold"> Rebar
-                        I<Run FontSize="7pt" BaselineAlignment="TextBottom">y</Run>
-                    </TextBlock>
-                    <TextBlock Grid.Row="9" Grid.Column="0" FontWeight="Bold"> Rebar
-                        r<Run FontSize="7pt" BaselineAlignment="TextBottom">x</Run>
-                    </TextBlock>
-                    <TextBlock Grid.Row="10" Grid.Column="0" FontWeight="Bold"> Rebar
-                        r<Run FontSize="7pt" BaselineAlignment="TextBottom">y</Run>
-                    </TextBlock>
+                    <Grid Grid.Row="6" Grid.Column="0" Grid.RowSpan="5">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+
+                        
+                        <TextBlock FontFamily="{StaticResource ArchDaughter}" Grid.Row="0" Grid.Column="0" Text="Rebar A" FontWeight="ExtraBold"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold"> Rebar
+                            I<Run FontSize="7pt" BaselineAlignment="TextBottom">x</Run>
+                        </TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="Bold"> Rebar
+                            I<Run FontSize="7pt" BaselineAlignment="TextBottom">y</Run>
+                        </TextBlock>
+                        <TextBlock Grid.Row="3" Grid.Column="0" FontWeight="Bold"> Rebar
+                            r<Run FontSize="7pt" BaselineAlignment="TextBottom">x</Run>
+                        </TextBlock>
+                        <TextBlock Grid.Row="4" Grid.Column="0" FontWeight="Bold"> Rebar
+                            r<Run FontSize="7pt" BaselineAlignment="TextBottom">y</Run>
+                        </TextBlock>
+
+
+                        <TextBlock FontFamily="{StaticResource ArchDaughter}" Grid.Row="0" Grid.Column="1" 
+Background="#EFEFEF" FontWeight="ExtraBold" Margin="0 2 0 2"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+
+
+                    </Grid>
                     
-                    
+
                     <!--Table in Column 0 of Inner Grid-->
                     <DataGrid Grid.Row="5" Grid.ColumnSpan="3" Margin="5,5,5,5" 
                               CanUserAddRows="True" CanUserDeleteRows="True" 
@@ -240,7 +269,9 @@
 
                     <!--Input field for circular column-->
 
-                    <!-- <Border Visibility="{Binding Option, 
+                    <!-- Alternate Style
+                    
+                    <Border Visibility="{Binding Option, 
                         Converter={StaticResource inversebooleanToVisibilityConverter}}" Margin="0 2 5 2"  
                             Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">       
                         <TextBox Padding="2 2 0 0"/>
@@ -249,7 +280,9 @@
                         Converter={StaticResource inversebooleanToVisibilityConverter}}" Margin="0 2 5 2"  
                             Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
                         <TextBox IsReadOnly="True" Background="#EFEFEF" Padding="2 2 0 0"/>
-                    </Border> -->
+                    </Border> 
+                    
+                    -->
 
                     <Border Visibility="{Binding Option, 
                         Converter={StaticResource inversebooleanToVisibilityConverter}}" Margin="0,15,0,15"  
@@ -264,19 +297,42 @@
 
 
                     <!-- Labels in Column 2 of Inner Grid -->
-                    <TextBlock FontFamily="{StaticResource ArchDaughter}" Grid.Row="6" Grid.Column="2" Text="Total A" FontWeight="ExtraBold"/>
-                    <TextBlock Grid.Row="7" Grid.Column="2" FontWeight="Bold"> Total
-                        I<Run FontSize="7pt" BaselineAlignment="TextBottom">x</Run>
-                    </TextBlock>
-                    <TextBlock Grid.Row="8" Grid.Column="2" FontWeight="Bold"> Total
-                        I<Run FontSize="7pt" BaselineAlignment="TextBottom">y</Run>
-                    </TextBlock>
-                    <TextBlock Grid.Row="9" Grid.Column="2" FontWeight="Bold"> Total
-                        r<Run FontSize="7pt" BaselineAlignment="TextBottom">x</Run>
-                    </TextBlock>
-                    <TextBlock Grid.Row="10" Grid.Column="2" FontWeight="Bold"> Total
-                        r<Run FontSize="7pt" BaselineAlignment="TextBottom">y</Run>
-                    </TextBlock>
+                    <Grid Grid.Column="2" Grid.Row="6" Grid.RowSpan="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions> 
+                        
+                        <TextBlock FontFamily="{StaticResource ArchDaughter}" Grid.Row="0" Grid.Column="0" 
+                                   Text="Total A" FontWeight="ExtraBold"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold"> Total
+                                I<Run FontSize="7pt" BaselineAlignment="TextBottom">x</Run>
+                        </TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="Bold"> Total
+                                I<Run FontSize="7pt" BaselineAlignment="TextBottom">y</Run>
+                        </TextBlock>
+                        <TextBlock Grid.Row="3" Grid.Column="0" FontWeight="Bold"> Total
+                                r<Run FontSize="7pt" BaselineAlignment="TextBottom">x</Run>
+                        </TextBlock>
+                        <TextBlock Grid.Row="4" Grid.Column="0" FontWeight="Bold"> Total
+                            r<Run FontSize="7pt" BaselineAlignment="TextBottom">y</Run>
+                        </TextBlock>
+
+                        <TextBlock FontFamily="{StaticResource ArchDaughter}" Grid.Row="0" Grid.Column="1" 
+                                   Background="#EFEFEF" FontWeight="ExtraBold" Margin="0 2 0 2"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                    </Grid>
+                    
                 </Grid>
             </GroupBox>
 
