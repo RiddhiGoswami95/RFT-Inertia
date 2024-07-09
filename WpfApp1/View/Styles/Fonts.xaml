@@ -2,21 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:WpfApp1">
 
-    <FontFamily x:Key="LatoRegular">/Fonts/#Lato Regular</FontFamily>
-    <FontFamily x:Key="ArchDaughter">/Fonts/#architectsdaughter</FontFamily>
-    <FontFamily x:Key="Roboto">/Fonts/#Roboto Regular</FontFamily>
-    <FontFamily x:Key="LatoThin">/Fonts/#Lato Thin</FontFamily>
-
-    <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
-        <Setter Property="FontFamily" Value="{StaticResource Roboto}" />
-    </Style>
-
-    <Style TargetType="{x:Type TextBlock}" x:Key="BaseTextBlockStyle">
-        <Setter Property="FontFamily" Value="{StaticResource Roboto}" />
-    </Style>
-
-    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}" />
-    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource BaseStyle}" />
-    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}" />
-    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}" />
+    <FontFamily x:Key="LatoRegular">pack://application:,,,/WpfApp1;component/Fonts/#Lato Regular</FontFamily>
+    <FontFamily x:Key="ArchDaughter">pack://application:,,,/WpfApp1;component/Fonts/#architectsdaughter</FontFamily>
+    <FontFamily x:Key="Roboto">pack://application:,,,/WpfApp1;component/Fonts/#Roboto Regular</FontFamily>
+    <FontFamily x:Key="LatoThin">pack://application:,,,/WpfApp1;component/Fonts/#Lato Thin</FontFamily>
+    <FontFamily x:Key="Product Sans">pack://application:,,,/WpfApp1;component/Fonts/#Product Sans Regular</FontFamily>
 </ResourceDictionary>

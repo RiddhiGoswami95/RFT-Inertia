@@ -28,13 +28,21 @@
     <None Remove="View\Fonts\Lato-SemiboldItalic.ttf" />
     <None Remove="View\Fonts\Lato-Thin.ttf" />
     <None Remove="View\Fonts\Lato-ThinItalic.ttf" />
+    <None Remove="View\Fonts\Product Sans Bold Italic.ttf" />
+    <None Remove="View\Fonts\Product Sans Bold.ttf" />
+    <None Remove="View\Fonts\Product Sans Italic.ttf" />
+    <None Remove="View\Fonts\Product Sans Regular.ttf" />
     <None Remove="View\Fonts\Roboto-Regular.ttf" />
     <None Remove="View\Images\close.png" />
+    <None Remove="View\Images\full-screen.png" />
     <None Remove="View\Images\full.jpg" />
     <None Remove="View\Images\min.jpg" />
+    <None Remove="View\Images\minimize.png" />
+    <None Remove="View\Images\minus.png" />
     <None Remove="View\Images\norm.jpg" />
     <None Remove="Jacobs.png" />
     <None Remove="View\Resources\calculation.png" />
+    <None Remove="View\Resources\logo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -66,15 +74,21 @@
     <Resource Include="View\Fonts\Lato-SemiboldItalic.ttf" />
     <Resource Include="View\Fonts\Lato-Thin.ttf" />
     <Resource Include="View\Fonts\Lato-ThinItalic.ttf" />
+    <Resource Include="View\Fonts\Product Sans Bold Italic.ttf" />
+    <Resource Include="View\Fonts\Product Sans Bold.ttf" />
+    <Resource Include="View\Fonts\Product Sans Italic.ttf" />
+    <Resource Include="View\Fonts\Product Sans Regular.ttf" />
     <Resource Include="View\Fonts\Roboto-Regular.ttf" />
     <Resource Include="View\Images\close.png" />
+    <Resource Include="View\Images\full-screen.png" />
     <Resource Include="View\Images\full.jpg" />
     <Resource Include="View\Images\min.jpg" />
+    <Resource Include="View\Images\minimize.png" />
+    <Resource Include="View\Images\minus.png" />
     <Resource Include="View\Images\norm.jpg" />
     <Resource Include="View\Resources\calculation.png" />
-    <Resource Include="View\Resources\GlassButton.xaml" />
-    <Resource Include="View\Resources\GlassIcon.xaml" />
     <Resource Include="View\Resources\Jacobs.png" />
+    <Resource Include="View\Resources\logo.png" />
   </ItemGroup>
 
 </Project>
