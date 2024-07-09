@@ -29,7 +29,6 @@ namespace WpfApp1
             }
         }
 
-        // CollectionChanged
         public ObservableCollection<Rebars> Entries
         {
             get { return user_int; }
@@ -76,12 +75,6 @@ namespace WpfApp1
         private int _count;
 
         static int Counter = 0;
-
-        public int Count
-        {
-            get { return _count; }
-            set { _count++; }
-        }
 
         public float Dia
         {
