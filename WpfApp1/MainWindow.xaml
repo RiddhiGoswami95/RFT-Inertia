@@ -155,18 +155,28 @@
                               EnableRowVirtualization="False"
                               AlternationCount="{Binding Entries.Count}" 
                               FontStyle="Normal" Foreground="Black"
-                              SelectionMode="Single"
-                              Background="LightGoldenrodYellow">
+                              SelectionMode="Single">
+
+                        <DataGrid.Resources>
+                            <Style x:Key="ColumnHeaderStyle" TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="LightGreen"/>
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.ColumnHeaderStyle>
+                            <StaticResource ResourceKey="ColumnHeaderStyle" />
+                        </DataGrid.ColumnHeaderStyle>
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Row" Width="*" IsReadOnly="True"  Binding="{Binding Count}">
+                            <DataGridTextColumn Header="Row" Width="*" IsReadOnly="True"  Binding="{Binding AlternationIndex, 
+                                     RelativeSource={RelativeSource
+                                                     AncestorType=DataGridRow}}">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
-                                        <Setter Property="Background" Value="LavenderBlush" />
+                                        <Setter Property="Background" Value="DarkGoldenrod" />
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            
+
                             <DataGridTextColumn Header="R Diameter" Binding="{Binding Dia}" Width="2*"/>
                             <DataGridTextColumn Header="Number" Binding="{Binding Num}" Width="2*"/>
                             <DataGridTextColumn Header="Delta Y" Binding="{Binding DeltaY}" Width="2*"/>
