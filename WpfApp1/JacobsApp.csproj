@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\close.png" />
+    <None Remove="Images\full.jpg" />
+    <None Remove="Images\min.jpg" />
+    <None Remove="Images\norm.jpg" />
+    <None Remove="Jacobs.png" />
+    <None Remove="Resources\calculation.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="GlassButton.xaml" />
+    <Page Remove="GlassIcon.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Downloads\WpfCustomChromeLib\Libraries\CustomChromeLibrary\CustomChromeLibrary.csproj" />
+    <ProjectReference Include="..\..\..\..\Downloads\WpfCustomChromeLib\ThirdParty\WPF Shell Integration Library v2\Microsoft.Windows.Shell\Microsoft.Windows.Shell.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\close.png" />
+    <Resource Include="Images\full.jpg" />
+    <Resource Include="Images\min.jpg" />
+    <Resource Include="Images\norm.jpg" />
+    <Resource Include="Resources\calculation.png" />
+    <Resource Include="Resources\GlassButton.xaml" />
+    <Resource Include="Resources\GlassIcon.xaml" />
+    <Resource Include="Resources\Jacobs.png" />
+  </ItemGroup>
+
+</Project>
