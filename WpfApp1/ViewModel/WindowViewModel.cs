@@ -10,16 +10,18 @@ using System.Windows.Input;
 using Fasetto.Word;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows.Controls;
 
 namespace WpfApp1
 {
     public class WindowViewModel : BaseViewModel
     {
-        private ObservableCollection<Rebars> user_int;
+        private ObservableCollection<Rebars>? user_int;
         private Window mWindow;
-        private int _count;
+        private bool _option;
+        private ComboBoxItem _mySelectedItem;
 
-        public ObservableCollection<Rebars> Entries
+        public ObservableCollection<Rebars>? Entries
         {
             get { return user_int; }
             set
@@ -33,10 +35,28 @@ namespace WpfApp1
         public ICommand MaximizeCommand { get; set; }
         public ICommand CloseCommand { get; set; }
 
-        public int Count
+
+        public bool Option
         {
-            get { return _count; }
-            set { _count = value; }
+            get { return _option; }
+            set { _option = value; OnPropertyChanged(nameof(Option)); }
+        }
+
+        public ComboBoxItem MySelectedItem
+        {
+            get { return _mySelectedItem; }
+            set
+            {
+                _mySelectedItem = value;
+                switch(_mySelectedItem.Content.ToString())
+                {
+                    case ("Rectangular Column"):
+                    case ("Rectangular Beam"):
+                        { Option = true; break; }
+                    case ("Circular Column"):
+                        { Option = false; break; }
+                }
+            }
         }
 
 
@@ -48,6 +68,7 @@ namespace WpfApp1
             MinimizeCommand = new RelayCommand(() => mWindow.WindowState = WindowState.Minimized);
             MaximizeCommand = new RelayCommand(() => mWindow.WindowState ^= WindowState.Maximized); //xor
             CloseCommand = new RelayCommand(() => mWindow.Close());
+
             Entries = new ObservableCollection<Rebars>();
             Entries.CollectionChanged += OnEntriesCollectionChanged;
 
@@ -55,18 +76,23 @@ namespace WpfApp1
 
         private void OnEntriesCollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            Count = Entries.Count;
+            foreach (var item in Entries)
+            {
+                item.Count = Entries.IndexOf(item) + 1;
+            }
         }
-        
+
         #endregion
 
     }
 
-    public class Rebars
+    public class Rebars: BaseViewModel
     {
         private float _dia;
-        private static int _num;
+        private int _num;
         private float _delta;
+        private int _count;
+
 
         public float Dia
         {
@@ -78,6 +104,15 @@ namespace WpfApp1
         {
             get { return _num; }
             set { _num = value; }
+        }
+
+        public int Count
+        {
+            get => _count;
+            set { 
+                _count = value;
+                OnPropertyChanged(nameof(Count));
+            }
         }
 
         public float DeltaY

@@ -4,10 +4,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ccl="clr-namespace:CustomChromeLibrary;assembly=CustomChromeLibrary"
         xmlns:vm="clr-namespace:WpfApp1"
         xmlns:local="clr-namespace:WpfApp1"
-    MouseDown="Window_MouseDown"
+        xmlns:converter="clr-namespace:System.Windows" 
+        d:DataContext="{d:DesignInstance Type=vm:WindowViewModel}"
+        MouseDown="Window_MouseDown"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         WindowStyle="None"
@@ -18,8 +19,11 @@
         Icon="Resources/calculation.png"
         Title="Inertia Calculator" Height="500" Width="650">
 
-    <Grid>
+    <Window.Resources>
+        <converter:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+    </Window.Resources>
 
+    <Grid>
         <Grid.Resources>
             <ControlTemplate x:Key="windowControls" TargetType="Button" >
                 <Grid>
@@ -126,8 +130,10 @@
 
                     <!-- Labels in Column 0 of Inner Grid -->
                     <Label Grid.Row="1" Grid.Column="0" Content="Section Type" FontWeight="Bold"/>
-                    <Label Grid.Row="2" Grid.Column="0" Content="Width" FontWeight="Bold"/>
-                    <Label Grid.Row="3" Grid.Column="0" Content="Height" FontWeight="Bold"/>
+                    <Label Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" 
+                           Grid.Row="2" Grid.Column="0" Content="Width" FontWeight="Bold"/>
+                    <Label Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" 
+                           Grid.Row="3" Grid.Column="0" Content="Height" FontWeight="Bold"/>
                     <Label Grid.Row="4" Grid.Column="0" Content="Cover" FontWeight="Bold"/>
 
                     <TextBlock Grid.Row="6" Grid.Column="0" Text="Rebar A" FontWeight="ExtraBold"/>
@@ -151,15 +157,15 @@
                               VerticalGridLinesBrush="AliceBlue"
                               GridLinesVisibility="Vertical"
                               IsReadOnly="False" AutoGenerateColumns="False"
-                              ItemsSource="{Binding Entries}"
+                              ItemsSource="{Binding Entries}" HeadersVisibility="Column"
                               EnableRowVirtualization="False"
-                              AlternationCount="{Binding Entries.Count}" 
                               FontStyle="Normal" Foreground="Black"
-                              SelectionMode="Single">
+                              SelectionMode="Single"
+                              Background="White">
 
                         <DataGrid.Resources>
                             <Style x:Key="ColumnHeaderStyle" TargetType="DataGridColumnHeader">
-                                <Setter Property="Background" Value="LightGreen"/>
+                                <Setter Property="Background" Value="#EFEFEF"/>
                             </Style>
                         </DataGrid.Resources>
                         <DataGrid.ColumnHeaderStyle>
@@ -167,12 +173,11 @@
                         </DataGrid.ColumnHeaderStyle>
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Row" Width="*" IsReadOnly="True"  Binding="{Binding AlternationIndex, 
-                                     RelativeSource={RelativeSource
-                                                     AncestorType=DataGridRow}}">
+                            <DataGridTextColumn Header="Row" Width="*" IsReadOnly="True" Binding="{Binding Count}">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
-                                        <Setter Property="Background" Value="DarkGoldenrod" />
+                                        <Setter Property="Background" Value="#EFEFEF" />
+                                        <Setter Property="Padding" Value="4,2,2,2" />
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
@@ -180,19 +185,33 @@
                             <DataGridTextColumn Header="R Diameter" Binding="{Binding Dia}" Width="2*"/>
                             <DataGridTextColumn Header="Number" Binding="{Binding Num}" Width="2*"/>
                             <DataGridTextColumn Header="Delta Y" Binding="{Binding DeltaY}" Width="2*"/>
+                            <DataGridTemplateColumn Header="Delete" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Delete" Command="Delete"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
 
                     <!--Controls in Column 2 -->
-                    <ComboBox x:Name="section" Margin="0 2 5 2"  Padding="2 2 0 0" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+                    <ComboBox x:Name="section" Margin="0 2 5 2"  Padding="2 2 0 0" 
+                              Grid.Row="1" Grid.Column="1" 
+                              Grid.ColumnSpan="2" 
+                              SelectedItem="{Binding MySelectedItem}">
                         <ComboBoxItem Tag="CC">Circular Column</ComboBoxItem>
                         <ComboBoxItem Tag="RC">Rectangular Column</ComboBoxItem>
                         <ComboBoxItem Tag="RB">Rectangular Beam</ComboBoxItem>
                     </ComboBox>
-                    <Border Margin="0 2 5 2"  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
+                    <Border Visibility="{Binding Option, 
+                        Converter={StaticResource booleanToVisibilityConverter}}" Margin="0 2 5 2"  
+                            Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
                         <TextBox Padding="2 2 0 0"/>
                     </Border>
-                    <Border Margin="0 2 5 2"  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
+                    <Border Visibility="{Binding Option, 
+                        Converter={StaticResource booleanToVisibilityConverter}}" Margin="0 2 5 2"  
+                            Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
                         <TextBox Padding="2 2 0 0"/>
                     </Border>
                     <Border Margin="0 2 5 2"  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">

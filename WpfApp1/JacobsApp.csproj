@@ -9,12 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\close.png" />
-    <None Remove="Images\full.jpg" />
-    <None Remove="Images\min.jpg" />
-    <None Remove="Images\norm.jpg" />
+    <None Remove="View\Images\close.png" />
+    <None Remove="View\Images\full.jpg" />
+    <None Remove="View\Images\min.jpg" />
+    <None Remove="View\Images\norm.jpg" />
     <None Remove="Jacobs.png" />
-    <None Remove="Resources\calculation.png" />
+    <None Remove="View\Resources\calculation.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,19 +27,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Downloads\WpfCustomChromeLib\Libraries\CustomChromeLibrary\CustomChromeLibrary.csproj" />
-    <ProjectReference Include="..\..\..\..\Downloads\WpfCustomChromeLib\ThirdParty\WPF Shell Integration Library v2\Microsoft.Windows.Shell\Microsoft.Windows.Shell.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Images\close.png" />
-    <Resource Include="Images\full.jpg" />
-    <Resource Include="Images\min.jpg" />
-    <Resource Include="Images\norm.jpg" />
-    <Resource Include="Resources\calculation.png" />
-    <Resource Include="Resources\GlassButton.xaml" />
-    <Resource Include="Resources\GlassIcon.xaml" />
-    <Resource Include="Resources\Jacobs.png" />
+    <Resource Include="View\Images\close.png" />
+    <Resource Include="View\Images\full.jpg" />
+    <Resource Include="View\Images\min.jpg" />
+    <Resource Include="View\Images\norm.jpg" />
+    <Resource Include="View\Resources\calculation.png" />
+    <Resource Include="View\Resources\GlassButton.xaml" />
+    <Resource Include="View\Resources\GlassIcon.xaml" />
+    <Resource Include="View\Resources\Jacobs.png" />
   </ItemGroup>
 
 </Project>
