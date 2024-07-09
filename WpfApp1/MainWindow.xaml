@@ -148,14 +148,24 @@
                     <!--Table in Column 0 of Inner Grid-->
                     <DataGrid Grid.Row="5" Grid.ColumnSpan="3" Margin="5,5,5,5" 
                               CanUserAddRows="True" CanUserDeleteRows="True" 
-                              HorizontalGridLinesBrush="AliceBlue"
                               VerticalGridLinesBrush="AliceBlue"
+                              GridLinesVisibility="Vertical"
                               IsReadOnly="False" AutoGenerateColumns="False"
                               ItemsSource="{Binding Entries}"
+                              EnableRowVirtualization="False"
+                              AlternationCount="{Binding Entries.Count}" 
                               FontStyle="Normal" Foreground="Black"
-                              AlternatingRowBackground="LightGreen">
+                              SelectionMode="Single"
+                              Background="LightGoldenrodYellow">
+
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Row" Width="*" IsReadOnly="True" Binding="{Binding Count}" />
+                            <DataGridTextColumn Header="Row" Width="*" IsReadOnly="True"  Binding="{Binding Count}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background" Value="LavenderBlush" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
                             <DataGridTextColumn Header="R Diameter" Binding="{Binding Dia}" Width="2*"/>
                             <DataGridTextColumn Header="Number" Binding="{Binding Num}" Width="2*"/>
                             <DataGridTextColumn Header="Delta Y" Binding="{Binding DeltaY}" Width="2*"/>

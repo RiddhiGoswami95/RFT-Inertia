@@ -17,6 +17,7 @@ namespace WpfApp1
     {
         private ObservableCollection<Rebars> user_int;
         private Window mWindow;
+        private int _count;
 
         public ObservableCollection<Rebars> Entries
         {
@@ -32,7 +33,13 @@ namespace WpfApp1
         public ICommand MaximizeCommand { get; set; }
         public ICommand CloseCommand { get; set; }
 
-   
+        public int Count
+        {
+            get { return _count; }
+            set { _count = value; }
+        }
+
+
         #region Constructor
         public WindowViewModel(Window window)
         {
@@ -42,19 +49,15 @@ namespace WpfApp1
             MaximizeCommand = new RelayCommand(() => mWindow.WindowState ^= WindowState.Maximized); //xor
             CloseCommand = new RelayCommand(() => mWindow.Close());
             Entries = new ObservableCollection<Rebars>();
-            //Entries.CollectionChanged += OnEntriesCollectionChanged;
+            Entries.CollectionChanged += OnEntriesCollectionChanged;
 
         }
 
-        /*
         private void OnEntriesCollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            throw new NotImplementedException();
-
-            e.NewItems.Count //dynamically change 
-
+            Count = Entries.Count;
         }
-        */
+        
         #endregion
 
     }
@@ -64,15 +67,6 @@ namespace WpfApp1
         private float _dia;
         private static int _num;
         private float _delta;
-        private int _count;
-
-        static int Counter = 0;
-
-        public int Count
-        {
-            get { return _count; }
-            set { _count = value; }
-        }
 
         public float Dia
         {
@@ -94,7 +88,6 @@ namespace WpfApp1
 
         public Rebars()
         {
-            _count = ++Counter;
         }
     }
 
