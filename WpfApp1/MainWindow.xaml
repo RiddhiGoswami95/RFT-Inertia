@@ -34,7 +34,6 @@
             </ControlTemplate>
         </Grid.Resources>
         
-        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -219,8 +218,6 @@
                     <TextBlock Text="Y" Foreground="Green" Canvas.Left="-18" Canvas.Top="84"/>
                 </Canvas>
             </GroupBox>
-
-
 
         </Grid>
 

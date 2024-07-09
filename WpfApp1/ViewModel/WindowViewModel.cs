@@ -16,18 +16,7 @@ namespace WpfApp1
     public class WindowViewModel : BaseViewModel
     {
         private ObservableCollection<Rebars> user_int;
-        private int _count = 0;
         private Window mWindow;
-
-        public int Count
-        {
-            get { return _count; }
-            set
-            {
-                _count = value;
-                OnPropertyChanged(nameof(Count));
-            }
-        }
 
         public ObservableCollection<Rebars> Entries
         {
@@ -53,9 +42,11 @@ namespace WpfApp1
             MaximizeCommand = new RelayCommand(() => mWindow.WindowState ^= WindowState.Maximized); //xor
             CloseCommand = new RelayCommand(() => mWindow.Close());
             Entries = new ObservableCollection<Rebars>();
-            Entries.CollectionChanged += OnEntriesCollectionChanged;
+            //Entries.CollectionChanged += OnEntriesCollectionChanged;
+
         }
 
+        /*
         private void OnEntriesCollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             throw new NotImplementedException();
@@ -63,6 +54,7 @@ namespace WpfApp1
             e.NewItems.Count //dynamically change 
 
         }
+        */
         #endregion
 
     }
@@ -75,6 +67,12 @@ namespace WpfApp1
         private int _count;
 
         static int Counter = 0;
+
+        public int Count
+        {
+            get { return _count; }
+            set { _count = value; }
+        }
 
         public float Dia
         {
