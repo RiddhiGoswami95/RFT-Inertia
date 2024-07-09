@@ -21,7 +21,9 @@ namespace WpfApp1
                 DragMove();
         }
 
-
-
+        private void section_Loaded(object sender, RoutedEventArgs e)
+        {
+            section.SelectedIndex = 1;
+        }
     }
 }

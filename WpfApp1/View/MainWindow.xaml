@@ -25,6 +25,7 @@
                 <ResourceDictionary Source="Styles/Fonts.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <converter:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+            <converter:InverseBooleanToVisibilityConverter x:Key="inversebooleanToVisibilityConverter"/>
         </ResourceDictionary>
     </Window.Resources>
 
@@ -135,10 +136,24 @@
 
                     <!-- Labels in Column 0 of Inner Grid -->
                     <Label FontFamily="{StaticResource ArchDaughter}" Grid.Row="1" Grid.Column="0" Content="Section Type" FontWeight="Bold"/>
+                    
+                    <!--Labels for rectangular sections-->
                     <Label FontFamily="{StaticResource ArchDaughter}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" 
                            Grid.Row="2" Grid.Column="0" Content="Width" FontWeight="Bold"/>
                     <Label FontFamily="{StaticResource ArchDaughter}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" 
                            Grid.Row="3" Grid.Column="0" Content="Height" FontWeight="Bold"/>
+                    
+                    <!--Label for circular sections-->
+                    
+                    <!-- <Label FontFamily="{StaticResource ArchDaughter}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource inversebooleanToVisibilityConverter}}" 
+                            Grid.Row="2" Grid.Column="0" Content="Radius" FontWeight="Bold"/>
+                    <Label FontFamily="{StaticResource ArchDaughter}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource inversebooleanToVisibilityConverter}}" 
+                            Grid.Row="3" Grid.Column="0" Content="Diameter" FontWeight="Bold"/>
+                    -->
+
+                    <Label FontFamily="{StaticResource ArchDaughter}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource inversebooleanToVisibilityConverter}}" 
+                                Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Content="Radius" FontWeight="Bold" Margin="0,15,0,15"/>
+                    
                     <Label FontFamily="{StaticResource ArchDaughter}" Grid.Row="4" Grid.Column="0" Content="Cover" FontWeight="Bold"/>
 
                     <TextBlock FontFamily="{StaticResource ArchDaughter}" Grid.Row="6" Grid.Column="0" Text="Rebar A" FontWeight="ExtraBold"/>
@@ -204,11 +219,14 @@
                     <ComboBox x:Name="section" Margin="0 2 5 2"  Padding="2 2 0 0" 
                               Grid.Row="1" Grid.Column="1" 
                               Grid.ColumnSpan="2" 
-                              SelectedItem="{Binding MySelectedItem}">
+                              Loaded="section_Loaded"
+                              SelectedItem="{Binding MySelectedItem}" >
                         <ComboBoxItem Tag="CC">Circular Column</ComboBoxItem>
                         <ComboBoxItem Tag="RC">Rectangular Column</ComboBoxItem>
                         <ComboBoxItem Tag="RB">Rectangular Beam</ComboBoxItem>
                     </ComboBox>
+                    
+                    <!--Input fields for rectangular sections-->
                     <Border Visibility="{Binding Option, 
                         Converter={StaticResource booleanToVisibilityConverter}}" Margin="0 2 5 2"  
                             Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
@@ -219,6 +237,27 @@
                             Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
                         <TextBox Padding="2 2 0 0"/>
                     </Border>
+
+                    <!--Input field for circular column-->
+
+                    <!-- <Border Visibility="{Binding Option, 
+                        Converter={StaticResource inversebooleanToVisibilityConverter}}" Margin="0 2 5 2"  
+                            Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">       
+                        <TextBox Padding="2 2 0 0"/>
+                    </Border>
+                    <Border Visibility="{Binding Option, 
+                        Converter={StaticResource inversebooleanToVisibilityConverter}}" Margin="0 2 5 2"  
+                            Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
+                        <TextBox IsReadOnly="True" Background="#EFEFEF" Padding="2 2 0 0"/>
+                    </Border> -->
+
+                    <Border Visibility="{Binding Option, 
+                        Converter={StaticResource inversebooleanToVisibilityConverter}}" Margin="0,15,0,15"  
+                            Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
+                        <TextBox IsReadOnly="True" Padding="2 2 0 0" Margin="0,0,5,0"/>
+                    </Border>
+
+
                     <Border Margin="0 2 5 2"  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
                         <TextBox Padding="2 2 0 0"/>
                     </Border>
