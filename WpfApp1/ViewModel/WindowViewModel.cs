@@ -11,6 +11,7 @@ using Fasetto.Word;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Controls;
+using System.IO;
 
 namespace WpfApp1
 {
@@ -20,6 +21,13 @@ namespace WpfApp1
         private Window mWindow;
         private bool _option;
         private ComboBoxItem _mySelectedItem;
+        private string _image = "Images/full.jpg";
+
+        public string Image
+        {
+            get => _image;
+            set { _image = value; OnPropertyChanged(nameof(Image)); }
+        }
 
         public ObservableCollection<Rebars>? Entries
         {
@@ -66,7 +74,19 @@ namespace WpfApp1
             mWindow = window;
 
             MinimizeCommand = new RelayCommand(() => mWindow.WindowState = WindowState.Minimized);
-            MaximizeCommand = new RelayCommand(() => mWindow.WindowState ^= WindowState.Maximized); //xor
+            MaximizeCommand = new RelayCommand(() =>
+            {
+                if (mWindow.WindowState != WindowState.Maximized)
+                {
+                    Image = "Images/norm.jpg";
+                    mWindow.WindowState = WindowState.Maximized;
+                }
+                else
+                {
+                    Image = "Images/full.jpg";
+                    mWindow.WindowState = WindowState.Normal;
+                }
+            });
             CloseCommand = new RelayCommand(() => mWindow.Close());
 
             Entries = new ObservableCollection<Rebars>();

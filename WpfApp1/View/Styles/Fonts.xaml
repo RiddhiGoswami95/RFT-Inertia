@@ -3,14 +3,16 @@
                     xmlns:local="clr-namespace:WpfApp1">
 
     <FontFamily x:Key="LatoRegular">/Fonts/#Lato Regular</FontFamily>
+    <FontFamily x:Key="ArchDaughter">/Fonts/#architectsdaughter</FontFamily>
+    <FontFamily x:Key="Roboto">/Fonts/#Roboto Regular</FontFamily>
     <FontFamily x:Key="LatoThin">/Fonts/#Lato Thin</FontFamily>
 
     <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
-        <Setter Property="FontFamily" Value="{StaticResource LatoThin}" />
+        <Setter Property="FontFamily" Value="{StaticResource Roboto}" />
     </Style>
 
     <Style TargetType="{x:Type TextBlock}" x:Key="BaseTextBlockStyle">
-        <Setter Property="FontFamily" Value="{StaticResource LatoThin}" />
+        <Setter Property="FontFamily" Value="{StaticResource Roboto}" />
     </Style>
 
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}" />

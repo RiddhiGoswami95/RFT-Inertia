@@ -17,10 +17,15 @@
         ResizeMode="CanResizeWithGrip"
         x:Name="AppWindow" 
         Icon="Resources/calculation.png"
-        Title="Inertia Calculator" Height="500" Width="650">
+        Title="Inertia Calculator" Height="520" Width="750">
 
     <Window.Resources>
-        <converter:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Fonts.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converter:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+        </ResourceDictionary>
     </Window.Resources>
 
     <Grid>
@@ -42,7 +47,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="4*" />
+            <RowDefinition Height="45" />
             <RowDefinition Height="46*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -67,7 +72,7 @@
                 </Border>
 
                 <!--Title-->
-                <Label Grid.Column="1" Content="Inertia Calculator" Height="Auto" Width="Auto" FontSize="20"
+                <Label FontFamily="{StaticResource Roboto}" Grid.Column="1" Content="Inertia Calculator" Height="Auto" Width="Auto" FontSize="25"
                     FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"
                     />
 
@@ -75,20 +80,20 @@
                 <Grid Grid.Column="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="30"/>
-                        <ColumnDefinition Width="30"/>
-                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="40"/>
                     </Grid.ColumnDefinitions>
 
 
-                    <Button Margin="0 0 0 10" Grid.Column="1" Command="{Binding MinimizeCommand}" Template="{StaticResource windowControls}">
-                        <Image Source="Images/min.jpg" />
+                    <Button Margin ="0 0 0 5" Grid.Column="1" Command="{Binding MinimizeCommand}" Template="{StaticResource windowControls}">
+                        <Image Source="Images/min.jpg" Stretch="Fill"/>
                     </Button>
-                    <Button Margin="0 0 0 10" Grid.Column="2" Command="{Binding MaximizeCommand}" Template="{StaticResource windowControls}">
-                        <Image Source="Images/full.jpg"/>
+                    <Button Margin ="0 0 0 5" Grid.Column="2" Command="{Binding MaximizeCommand}" Template="{StaticResource windowControls}">
+                        <Image Source="{Binding Image}" Stretch="Fill"/>
                     </Button>
-                    <Button Margin="0 0 0 10" Grid.Column="3" Command="{Binding CloseCommand}" Template="{StaticResource windowControls}">
-                        <Image Source="Images/close.png" />
+                    <Button Margin ="0 0 2 5" Grid.Column="3" Command="{Binding CloseCommand}" Template="{StaticResource windowControls}">
+                        <Image Source="Images/close.png" Stretch="Fill"/>
                     </Button>
                 </Grid>
             </Grid>
@@ -129,14 +134,14 @@
                     </Grid.RowDefinitions>
 
                     <!-- Labels in Column 0 of Inner Grid -->
-                    <Label Grid.Row="1" Grid.Column="0" Content="Section Type" FontWeight="Bold"/>
-                    <Label Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" 
+                    <Label FontFamily="{StaticResource ArchDaughter}" Grid.Row="1" Grid.Column="0" Content="Section Type" FontWeight="Bold"/>
+                    <Label FontFamily="{StaticResource ArchDaughter}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" 
                            Grid.Row="2" Grid.Column="0" Content="Width" FontWeight="Bold"/>
-                    <Label Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" 
+                    <Label FontFamily="{StaticResource ArchDaughter}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" 
                            Grid.Row="3" Grid.Column="0" Content="Height" FontWeight="Bold"/>
-                    <Label Grid.Row="4" Grid.Column="0" Content="Cover" FontWeight="Bold"/>
+                    <Label FontFamily="{StaticResource ArchDaughter}" Grid.Row="4" Grid.Column="0" Content="Cover" FontWeight="Bold"/>
 
-                    <TextBlock Grid.Row="6" Grid.Column="0" Text="Rebar A" FontWeight="ExtraBold"/>
+                    <TextBlock FontFamily="{StaticResource ArchDaughter}" Grid.Row="6" Grid.Column="0" Text="Rebar A" FontWeight="ExtraBold"/>
                     <TextBlock Grid.Row="7" Grid.Column="0" FontWeight="Bold"> Rebar
                         I<Run FontSize="7pt" BaselineAlignment="TextBottom">x</Run>
                     </TextBlock>
@@ -220,7 +225,7 @@
 
 
                     <!-- Labels in Column 2 of Inner Grid -->
-                    <TextBlock Grid.Row="6" Grid.Column="2" Text="Total A" FontWeight="ExtraBold"/>
+                    <TextBlock FontFamily="{StaticResource ArchDaughter}" Grid.Row="6" Grid.Column="2" Text="Total A" FontWeight="ExtraBold"/>
                     <TextBlock Grid.Row="7" Grid.Column="2" FontWeight="Bold"> Total
                         I<Run FontSize="7pt" BaselineAlignment="TextBottom">x</Run>
                     </TextBlock>
