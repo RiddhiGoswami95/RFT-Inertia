@@ -26,7 +26,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/Fonts.xaml"/>
+                <ResourceDictionary Source="./Styles/Fonts.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <converter:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
             <converter:InverseBooleanToVisibilityConverter x:Key="inversebooleanToVisibilityConverter"/>
@@ -78,9 +78,8 @@
                     </Border>
 
                     <!--Title-->
-                    <Label FontFamily="{StaticResource Product Sans}" Grid.Column="1" Content="Inertia Calculator" Height="Auto" Width="Auto" FontSize="25"
-                    FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"
-                    />
+                    <TextBlock FontFamily="{DynamicResource ParadiseLove}" Grid.Column="1" Text="Inertia Calculator" Height="Auto" Width="Auto" FontSize="25"
+                    FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
 
                     <!-- Close, Min, Max -->
                     <Grid Grid.Column="2">
@@ -140,12 +139,12 @@
                         </Grid.RowDefinitions>
 
                         <!-- Labels in Column 0 of Inner Grid -->
-                        <Label FontFamily="{StaticResource Product Sans}" Grid.Row="1" Grid.Column="0" Content="Section Type" FontWeight="Bold"/>
+                        <Label FontFamily="{StaticResource ProductSans}" Grid.Row="1" Grid.Column="0" Content="Section Type" FontWeight="Bold"/>
 
                         <!--Labels for rectangular sections-->
-                        <Label FontFamily="{StaticResource Product Sans}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" 
+                        <Label FontFamily="{StaticResource ProductSans}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" 
                            Grid.Row="2" Grid.Column="0" Content="Width" FontWeight="Bold"/>
-                        <Label FontFamily="{StaticResource Product Sans}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" 
+                        <Label FontFamily="{StaticResource ProductSans}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" 
                            Grid.Row="3" Grid.Column="0" Content="Height" FontWeight="Bold"/>
 
                         <!--Labels for circular sections-->
@@ -157,11 +156,11 @@
 
                         <!-- Alternate Style
 
-                    <Label FontFamily="{StaticResource Product Sans}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource inversebooleanToVisibilityConverter}}" 
+                    <Label FontFamily="{StaticResource ProductSans}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource inversebooleanToVisibilityConverter}}" 
                                 Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Content="Radius" FontWeight="Bold" Margin="0,15,0,15"/>
                      -->
 
-                        <Label FontFamily="{StaticResource Product Sans}" Grid.Row="4" Grid.Column="0" Content="Cover" FontWeight="Bold"/>
+                        <Label FontFamily="{StaticResource ProductSans}" Grid.Row="4" Grid.Column="0" Content="Cover" FontWeight="Bold"/>
 
                         <Grid Grid.Row="6" Grid.Column="0" Grid.RowSpan="5">
 
@@ -178,11 +177,11 @@
                             </Grid.RowDefinitions>
 
 
-                            <TextBlock FontFamily="{StaticResource Product Sans}" Grid.Row="0" Grid.Column="0" Text="Rebar A" FontWeight="ExtraBold"/>
+                            <TextBlock FontFamily="{StaticResource ProductSans}" Grid.Row="0" Grid.Column="0" Text="Rebar A" FontWeight="ExtraBold"/>
                             <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold"> Rebar
                             I<Run FontSize="7pt" BaselineAlignment="TextBottom">x</Run>
                             </TextBlock>
-                            <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="Bold"> Rebar
+                            <TextBlock Grid.Row="2" FontFamily="{StaticResource ParadiseLove}" Grid.Column="0" FontWeight="Bold"> Rebar
                             I<Run FontSize="7pt" BaselineAlignment="TextBottom">y</Run>
                             </TextBlock>
                             <TextBlock Grid.Row="3" Grid.Column="0" FontWeight="Bold"> Rebar
@@ -193,7 +192,7 @@
                             </TextBlock>
 
 
-                            <TextBlock FontFamily="{StaticResource Product Sans}" Grid.Row="0" Grid.Column="1" 
+                            <TextBlock FontFamily="{StaticResource ProductSans}" Grid.Row="0" Grid.Column="1" 
                                 Background="#EFEFEF" FontWeight="ExtraBold" Margin="0 2 0 2"/>
                             <TextBlock Grid.Row="1" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
                             <TextBlock Grid.Row="2" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
@@ -315,7 +314,7 @@
                                 <RowDefinition Height="30"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock FontFamily="{StaticResource Product Sans}" Grid.Row="0" Grid.Column="0" 
+                            <TextBlock FontFamily="{StaticResource ProductSans}" Grid.Row="0" Grid.Column="0" 
                                    Text="Total A" FontWeight="ExtraBold"/>
                             <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold"> Total
                                 I<Run FontSize="7pt" BaselineAlignment="TextBottom">x</Run>
@@ -330,7 +329,7 @@
                             r<Run FontSize="7pt" BaselineAlignment="TextBottom">y</Run>
                             </TextBlock>
 
-                            <TextBlock FontFamily="{StaticResource Product Sans}" Grid.Row="0" Grid.Column="1" 
+                            <TextBlock FontFamily="{StaticResource ProductSans}" Grid.Row="0" Grid.Column="1" 
                                    Background="#EFEFEF" FontWeight="ExtraBold" Margin="0 2 0 2"/>
                             <TextBlock Grid.Row="1" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
                             <TextBlock Grid.Row="2" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>

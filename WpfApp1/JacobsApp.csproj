@@ -9,43 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="View\Fonts\ArchitectsDaughter.ttf" />
-    <None Remove="View\Fonts\Lato-Black.ttf" />
-    <None Remove="View\Fonts\Lato-BlackItalic.ttf" />
-    <None Remove="View\Fonts\Lato-Bold.ttf" />
-    <None Remove="View\Fonts\Lato-BoldItalic.ttf" />
-    <None Remove="View\Fonts\Lato-Hairline.ttf" />
-    <None Remove="View\Fonts\Lato-HairlineItalic.ttf" />
-    <None Remove="View\Fonts\Lato-Heavy.ttf" />
-    <None Remove="View\Fonts\Lato-HeavyItalic.ttf" />
-    <None Remove="View\Fonts\Lato-Italic.ttf" />
-    <None Remove="View\Fonts\Lato-Light.ttf" />
-    <None Remove="View\Fonts\Lato-LightItalic.ttf" />
-    <None Remove="View\Fonts\Lato-Medium.ttf" />
-    <None Remove="View\Fonts\Lato-MediumItalic.ttf" />
-    <None Remove="View\Fonts\Lato-Regular.ttf" />
-    <None Remove="View\Fonts\Lato-Semibold.ttf" />
-    <None Remove="View\Fonts\Lato-SemiboldItalic.ttf" />
-    <None Remove="View\Fonts\Lato-Thin.ttf" />
-    <None Remove="View\Fonts\Lato-ThinItalic.ttf" />
-    <None Remove="View\Fonts\Product Sans Bold Italic.ttf" />
-    <None Remove="View\Fonts\Product Sans Bold.ttf" />
-    <None Remove="View\Fonts\Product Sans Italic.ttf" />
-    <None Remove="View\Fonts\Product Sans Regular.ttf" />
-    <None Remove="View\Fonts\Roboto-Regular.ttf" />
-    <None Remove="View\Images\close.png" />
-    <None Remove="View\Images\full-screen.png" />
-    <None Remove="View\Images\full.jpg" />
-    <None Remove="View\Images\min.jpg" />
-    <None Remove="View\Images\minimize.png" />
-    <None Remove="View\Images\minus.png" />
-    <None Remove="View\Images\norm.jpg" />
-    <None Remove="Jacobs.png" />
-    <None Remove="View\Resources\calculation.png" />
-    <None Remove="View\Resources\logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Page Remove="GlassButton.xaml" />
     <Page Remove="GlassIcon.xaml" />
   </ItemGroup>
@@ -74,10 +37,9 @@
     <Resource Include="View\Fonts\Lato-SemiboldItalic.ttf" />
     <Resource Include="View\Fonts\Lato-Thin.ttf" />
     <Resource Include="View\Fonts\Lato-ThinItalic.ttf" />
-    <Resource Include="View\Fonts\Product Sans Bold Italic.ttf" />
-    <Resource Include="View\Fonts\Product Sans Bold.ttf" />
-    <Resource Include="View\Fonts\Product Sans Italic.ttf" />
-    <Resource Include="View\Fonts\Product Sans Regular.ttf" />
+    <Resource Include="View\Fonts\ParadiseLove.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="View\Fonts\Roboto-Regular.ttf" />
     <Resource Include="View\Images\close.png" />
     <Resource Include="View\Images\full-screen.png" />
@@ -89,6 +51,21 @@
     <Resource Include="View\Resources\calculation.png" />
     <Resource Include="View\Resources\Jacobs.png" />
     <Resource Include="View\Resources\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

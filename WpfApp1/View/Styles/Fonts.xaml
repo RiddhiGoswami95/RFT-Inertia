@@ -6,5 +6,7 @@
     <FontFamily x:Key="ArchDaughter">pack://application:,,,/WpfApp1;component/Fonts/#architectsdaughter</FontFamily>
     <FontFamily x:Key="Roboto">pack://application:,,,/WpfApp1;component/Fonts/#Roboto Regular</FontFamily>
     <FontFamily x:Key="LatoThin">pack://application:,,,/WpfApp1;component/Fonts/#Lato Thin</FontFamily>
-    <FontFamily x:Key="Product Sans">pack://application:,,,/WpfApp1;component/Fonts/#Product Sans Regular</FontFamily>
+    <FontFamily x:Key="ProductSans">pack://application:,,,/WpfApp1;component/Fonts/#Product Sans Regular</FontFamily>
+    <!--<FontFamily x:Key="ParadiseLove">pack://application:,,,/WpfApp1;component/View/Fonts/ParadiseLove.ttf</FontFamily>-->
+    <FontFamily x:Key="ParadiseLove">pack://application:,,,/WpfApp1;component/Fonts/#ParadiseLove</FontFamily>
 </ResourceDictionary>
