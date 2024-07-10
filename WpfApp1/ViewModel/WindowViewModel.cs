@@ -87,6 +87,11 @@ namespace WpfApp1
             }
         }
 
+        
+        
+        
+        
+        
         #region Constructor
         public WindowViewModel(Window window)
         {
