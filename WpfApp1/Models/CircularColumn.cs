@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JacobsApp.Models
+namespace WpfApp1
 {
     class CircularColumn
     {

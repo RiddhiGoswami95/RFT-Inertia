@@ -17,6 +17,8 @@ namespace WpfApp1
 {
     public class WindowViewModel : BaseViewModel
     {
+        #region Private Properties
+
         private ObservableCollection<Rebars>? user_int;
         private Window mWindow;
         private bool _option;
@@ -25,6 +27,15 @@ namespace WpfApp1
         private float _radius;
         private float _diameter;
         const float PI = 3.14f;
+
+        #endregion
+
+        #region Public Properties/Methods
+
+        public float Ax = 0;
+        public float Ay = 0;
+        private static float _ccenterX = 0;
+        private static float _ccenterY = 0;
 
         public string Image
         {
@@ -36,7 +47,7 @@ namespace WpfApp1
             get { return user_int; }
             set
             {
-                user_int = value;
+                user_int = value; 
                 OnPropertyChanged(nameof(Entries));
             }
         }
@@ -87,11 +98,48 @@ namespace WpfApp1
             }
         }
 
-        
-        
-        
-        
-        
+        public float Centroid
+        {
+            get => _ccenterX;
+            set
+            {
+                _ccenterX = value; OnPropertyChanged(nameof(Centroid));
+            }
+        }
+
+        public void Circular_Centroid()
+        {
+            if (_radius != 0 && user_int is not null)
+            {
+                
+                foreach (var item in user_int)
+                {
+                    var radius_Rebar = item.Dia / 2; 
+                    var slice = (2 * Math.PI) / item.Num;
+
+                    for (int i = 0; i < item.Num; i++)
+                    {
+                        var angle = slice * i;
+                        var x = (_radius - item.DeltaY) * Math.Cos(angle);
+                        var y = (_radius - item.DeltaY) * Math.Sin(angle);
+                        Ax += PI * (float) Math.Pow(radius_Rebar,2) * (float)x;
+                        Ay += PI * (float)Math.Pow(radius_Rebar, 2) * (float)y;
+                    }
+                    
+                }
+            }
+
+            float A = PI * (float)Math.Pow(_radius, 2);
+            _ccenterX = Ax / A;
+            _ccenterY = Ay/A;
+        }
+
+
+
+        #endregion
+
+
+
         #region Constructor
         public WindowViewModel(Window window)
         {
