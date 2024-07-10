@@ -69,58 +69,21 @@ namespace WpfApp1
 
         public float Radius // set for diameter too in this
         {
-            get
-            {
-                if (_diameter == 0 && _radius == 0)
-                {
-                    return _radius;
-                }
-                else if (_diameter != 0 && _radius = 0)
-                {
-                    return (2 / _radius);
-                }
-                else if (_diameter != 0 && _radius != 0)
-                {
-                    Diameter = 0;
-                    return _radius;
-                }
-                else
-                {
-                    return _radius;
-                }
-            }
+            get => _radius;
             set
             {
                 _radius = value; OnPropertyChanged(nameof(Radius));
+                Diameter = _radius * 2; OnPropertyChanged(nameof(Diameter));
             }
         }
 
         public float Diameter
         {
-            get
-            {
-                if (_diameter == 0 && _radius == 0)
-                {
-                    return _diameter;
-                }
-                else if (_radius != 0 && _diameter == 0)
-                {
-                    return (2 * _radius);
-                }
-                else if (_radius != 0 && _diameter != 0)
-                {
-                    Radius = 0;
-                    return _diameter;
-                }
-                else
-                {
-                    return _diameter;
-                }
-            
-            }
+            get => _diameter;
             set
             {
-                _diameter = value; OnPropertyChanged(nameof(Radius));
+                _diameter = value; OnPropertyChanged(nameof(Diameter));
+                _radius = _diameter / 2; OnPropertyChanged(nameof(Radius));
             }
         }
 
