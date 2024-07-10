@@ -167,7 +167,7 @@ namespace WpfApp1
             Centroid = A_rebar_x / A;
             _ccenterY = A_rebar_y / A;
         }
-        public void Inerta_Cal()
+        public void Inertia_Cal()
         {
             double A_rebar = 0;
             double Ix = 0;
@@ -226,7 +226,7 @@ namespace WpfApp1
             Calculate = new RelayCommand(() => 
             { 
                 Circular_Centroid();
-                Inerta_Cal();
+                Inertia_Cal();
             });
 
             Entries = new ObservableCollection<Rebars>();
