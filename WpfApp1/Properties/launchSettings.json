@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "JacobsApp": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\GOSWAMR1\\source\\repos\\WpfApp1\\WpfApp1",
+      "nativeDebugging": false
+    }
+  }
+}
