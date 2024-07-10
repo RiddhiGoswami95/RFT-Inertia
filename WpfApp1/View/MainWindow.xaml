@@ -36,7 +36,7 @@
     <Border BorderBrush="#172D13" BorderThickness="2" Background="#F7F7F7">
         <Grid>
             <Grid.Resources>
-                <ControlTemplate x:Key="windowControls" TargetType="Button" >
+                <ControlTemplate x:Key="windowControls" TargetType="Button">
                     <Grid>
                         <ContentPresenter x:Name="buttons" Opacity="0.7" />
                     </Grid>
@@ -46,8 +46,9 @@
                             <Setter Property="Cursor" Value="Hand"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
-                </ControlTemplate>
+                </ControlTemplate> 
             </Grid.Resources>
+
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -197,11 +198,11 @@
 
 
                             <TextBlock x:Name="RA" Text ="{Binding Centroid}" FontFamily="{StaticResource ProductSans}" Grid.Row="0" Grid.Column="1" 
-                                Background="#EFEFEF" FontWeight="ExtraBold" Padding="2" Margin="0 2 0 2"/>
-                            <TextBlock x:Name="RIY" Grid.Row="1" Grid.Column="1" Padding="2" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
-                            <TextBlock x:Name="RIX" Grid.Row="2" Grid.Column="1" Padding="2" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
-                            <TextBlock x:Name="RRX" Grid.Row="3" Grid.Column="1" Padding="2" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
-                            <TextBlock x:Name="RRY" Grid.Row="4" Grid.Column="1" Padding="2" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                                Background="#EFEFEF" Padding="5" Margin="0 2 0 2"/>
+                            <TextBlock x:Name="RIY" Text="{Binding RebarIx}" Grid.Row="1" Grid.Column="1" Padding="5" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                            <TextBlock x:Name="RIX" Text="{Binding RebarIy}" Grid.Row="2" Grid.Column="1" Padding="5" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                            <TextBlock x:Name="RRX" Text="{Binding RebarRx}" Grid.Row="3" Grid.Column="1" Padding="5" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                            <TextBlock x:Name="RRY" Text="{Binding RebarRy}" Grid.Row="4" Grid.Column="1" Padding="5" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
 
 
                         </Grid>
@@ -252,7 +253,7 @@
                         </DataGrid>
 
                         <Button Content="Clear All" Grid.Row="7" Grid.Column="2" Margin ="30,10,30,10" Background="#849531" Foreground="AntiqueWhite"/>
-                        <Button Content="Calculate" Command ="{}" Grid.Row="7" Grid.Column="0" Margin ="30,10,30,10" Background="#849531" Foreground="AntiqueWhite"/>
+                        <Button Content="Calculate" Command ="{Binding Calculate}" Grid.Row="7" Grid.Column="0" Margin ="30,10,30,10" Background="#849531" Foreground="AntiqueWhite"/>
 
                         <!--Controls in Column 2 -->
                         <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" CornerRadius="2">

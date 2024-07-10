@@ -28,14 +28,16 @@ namespace WpfApp1
         private float _diameter;
         const float PI = 3.14f;
 
+        private static float _ccenterX = 0;
+        private static float _ccenterY = 0;
+        private static double _rebarIx = 0;
+        private static double _rebarIy = 0;
+        private static double _rebarRx = 0;
+        private static double _rebarRy = 0;
+
         #endregion
 
         #region Public Properties/Methods
-
-        public float Ax = 0;
-        public float Ay = 0;
-        private static float _ccenterX = 0;
-        private static float _ccenterY = 0;
 
         public string Image
         {
@@ -54,13 +56,45 @@ namespace WpfApp1
         public ICommand MinimizeCommand { get; set; }
         public ICommand MaximizeCommand { get; set; }
         public ICommand CloseCommand { get; set; }
+        public ICommand Calculate { get; set; }
 
+        public double RebarIx
+        {
+            get => _rebarIx;
+            set
+            {
+                _rebarIx = value; OnPropertyChanged(nameof(RebarIx));
+            }
+        }
+        public double RebarIy
+        {
+            get => _rebarIy;
+            set
+            {
+                _rebarIy = value; OnPropertyChanged(nameof(RebarIy));
+            }
+        }
+        public double RebarRx
+        {
+            get => _rebarRx;
+            set
+            {
+                _rebarRx = value; OnPropertyChanged(nameof(RebarRx));
+            }
+        }
+        public double RebarRy
+        {
+            get => _rebarRy;
+            set
+            {
+                _rebarRy = value; OnPropertyChanged(nameof(RebarRy));
+            }
+        }
         public bool Option
         {
             get { return _option; }
             set { _option = value; OnPropertyChanged(nameof(Option)); }
         }
-
         public ComboBoxItem MySelectedItem
         {
             get { return _mySelectedItem; }
@@ -77,8 +111,7 @@ namespace WpfApp1
                 }
             }
         }
-
-        public float Radius // set for diameter too in this
+        public float Radius
         {
             get => _radius;
             set
@@ -87,7 +120,6 @@ namespace WpfApp1
                 Diameter = _radius * 2; OnPropertyChanged(nameof(Diameter));
             }
         }
-
         public float Diameter
         {
             get => _diameter;
@@ -97,7 +129,6 @@ namespace WpfApp1
                 _radius = _diameter / 2; OnPropertyChanged(nameof(Radius));
             }
         }
-
         public float Centroid
         {
             get => _ccenterX;
@@ -106,11 +137,14 @@ namespace WpfApp1
                 _ccenterX = value; OnPropertyChanged(nameof(Centroid));
             }
         }
-
         public void Circular_Centroid()
         {
+            float A_rebar_x = 0;
+            float A_rebar_y = 0;
+
             if (_radius != 0 && user_int is not null)
             {
+                
                 
                 foreach (var item in user_int)
                 {
@@ -122,19 +156,47 @@ namespace WpfApp1
                         var angle = slice * i;
                         var x = (_radius - item.DeltaY) * Math.Cos(angle);
                         var y = (_radius - item.DeltaY) * Math.Sin(angle);
-                        Ax += PI * (float) Math.Pow(radius_Rebar,2) * (float)x;
-                        Ay += PI * (float)Math.Pow(radius_Rebar, 2) * (float)y;
+                        A_rebar_x += PI * (float) Math.Pow(radius_Rebar,2) * (float)x;
+                        A_rebar_y += PI * (float)Math.Pow(radius_Rebar, 2) * (float)y;
                     }
                     
                 }
             }
 
             float A = PI * (float)Math.Pow(_radius, 2);
-            _ccenterX = Ax / A;
-            _ccenterY = Ay/A;
+            Centroid = A_rebar_x / A;
+            _ccenterY = A_rebar_y / A;
         }
+        public void Inerta_Cal()
+        {
+            double A_rebar = 0;
+            double Ix = 0;
+            double Iy = 0;
 
+            if (_radius != 0 && user_int is not null)
+            { 
+                foreach (var item in user_int)
+                {
+                    double radius_Rebar = item.Dia / 2;
+                    A_rebar = PI * Math.Pow(radius_Rebar, 2);
+                    double slice = (2 * Math.PI) / item.Num;
 
+                    for (int i = 0; i < item.Num; i++)
+                    {
+                        double angle = slice * i;
+                        double x = (_radius - item.DeltaY) * Math.Cos(angle);
+                        double y = (_radius - item.DeltaY) * Math.Sin(angle);
+                        Ix += ((PI * Math.Pow(item.Dia, 4)) / 64) + (A_rebar * Math.Pow(x,2));
+                        Iy += ((PI * Math.Pow(item.Dia, 4)) / 64) + (A_rebar * Math.Pow(y, 2));
+                    }
+
+                }
+            }
+
+            RebarRx = Math.Round(Ix, 5);
+            RebarRy = Math.Round(Iy, 2); 
+
+        }
 
         #endregion
 
@@ -160,6 +222,12 @@ namespace WpfApp1
                 }
             });
             CloseCommand = new RelayCommand(() => mWindow.Close());
+
+            Calculate = new RelayCommand(() => 
+            { 
+                Circular_Centroid();
+                Inerta_Cal();
+            });
 
             Entries = new ObservableCollection<Rebars>();
             Entries.CollectionChanged += OnEntriesCollectionChanged;

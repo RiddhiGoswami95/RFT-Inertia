@@ -8,7 +8,7 @@ namespace WpfApp1
 {
     class CircularColumn
     {
-        int radius;
+        
 
     }
 }
