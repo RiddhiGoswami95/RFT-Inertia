@@ -22,13 +22,15 @@ namespace WpfApp1
         private bool _option;
         private ComboBoxItem _mySelectedItem;
         private string _image = "Images/full.jpg";
+        private float _radius;
+        private float _diameter;
+        const float PI = 3.14f;
 
         public string Image
         {
             get => _image;
             set { _image = value; OnPropertyChanged(nameof(Image)); }
         }
-
         public ObservableCollection<Rebars>? Entries
         {
             get { return user_int; }
@@ -38,11 +40,9 @@ namespace WpfApp1
                 OnPropertyChanged(nameof(Entries));
             }
         }
-
         public ICommand MinimizeCommand { get; set; }
         public ICommand MaximizeCommand { get; set; }
         public ICommand CloseCommand { get; set; }
-
 
         public bool Option
         {
@@ -67,6 +67,62 @@ namespace WpfApp1
             }
         }
 
+        public float Radius // set for diameter too in this
+        {
+            get
+            {
+                if (_diameter == 0 && _radius == 0)
+                {
+                    return _radius;
+                }
+                else if (_diameter != 0 && _radius = 0)
+                {
+                    return (2 / _radius);
+                }
+                else if (_diameter != 0 && _radius != 0)
+                {
+                    Diameter = 0;
+                    return _radius;
+                }
+                else
+                {
+                    return _radius;
+                }
+            }
+            set
+            {
+                _radius = value; OnPropertyChanged(nameof(Radius));
+            }
+        }
+
+        public float Diameter
+        {
+            get
+            {
+                if (_diameter == 0 && _radius == 0)
+                {
+                    return _diameter;
+                }
+                else if (_radius != 0 && _diameter == 0)
+                {
+                    return (2 * _radius);
+                }
+                else if (_radius != 0 && _diameter != 0)
+                {
+                    Radius = 0;
+                    return _diameter;
+                }
+                else
+                {
+                    return _diameter;
+                }
+            
+            }
+            set
+            {
+                _diameter = value; OnPropertyChanged(nameof(Radius));
+            }
+        }
 
         #region Constructor
         public WindowViewModel(Window window)

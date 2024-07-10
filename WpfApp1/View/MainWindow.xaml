@@ -147,20 +147,19 @@
                     <Label FontFamily="{StaticResource Product Sans}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" 
                            Grid.Row="3" Grid.Column="0" Content="Height" FontWeight="Bold"/>
                     
-                    <!--Label for circular sections-->
-                    
-                    <!-- Alternate Style
-                    
-                    
+                    <!--Labels for circular sections-->
+
                     <Label FontFamily="{StaticResource ArchDaughter}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource inversebooleanToVisibilityConverter}}" 
                             Grid.Row="2" Grid.Column="0" Content="Radius" FontWeight="Bold"/>
                     <Label FontFamily="{StaticResource ArchDaughter}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource inversebooleanToVisibilityConverter}}" 
                             Grid.Row="3" Grid.Column="0" Content="Diameter" FontWeight="Bold"/>
-                    -->
+                    
+                    <!-- Alternate Style
 
                     <Label FontFamily="{StaticResource Product Sans}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource inversebooleanToVisibilityConverter}}" 
                                 Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Content="Radius" FontWeight="Bold" Margin="0,15,0,15"/>
-
+                     -->
+                    
                     <Label FontFamily="{StaticResource Product Sans}" Grid.Row="4" Grid.Column="0" Content="Cover" FontWeight="Bold"/>
 
                     <Grid Grid.Row="6" Grid.Column="0" Grid.RowSpan="5">
@@ -274,26 +273,26 @@
 
                     <!--Input field for circular column-->
 
-                    <!-- Alternate Style
+                    
                     
                     <Border Visibility="{Binding Option, 
                         Converter={StaticResource inversebooleanToVisibilityConverter}}" Margin="0 2 5 2"  
-                            Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">       
-                        <TextBox Padding="2 2 0 0"/>
+                            Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
+                        <TextBox x:Name="Radius" Padding="2 2 0 0" Text="{Binding Radius}" />
                     </Border>
                     <Border Visibility="{Binding Option, 
                         Converter={StaticResource inversebooleanToVisibilityConverter}}" Margin="0 2 5 2"  
                             Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
-                        <TextBox IsReadOnly="True" Background="#EFEFEF" Padding="2 2 0 0"/>
+                        <TextBox x:Name="Dia" Background="#EFEFEF" Padding="2 2 0 0" Text="{Binding Diameter}"/>
                     </Border> 
                     
-                    -->
-
+                    <!-- Alternate Style
                     <Border Visibility="{Binding Option, 
                         Converter={StaticResource inversebooleanToVisibilityConverter}}" Margin="0,15,0,15"  
                             Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
                         <TextBox IsReadOnly="True" Padding="2 2 0 0" Margin="0,0,5,0"/>
                     </Border>
+                    -->
 
 
                     <Border Margin="0 2 5 2"  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
