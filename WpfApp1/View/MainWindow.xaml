@@ -23,7 +23,7 @@
         <WindowChrome GlassFrameThickness="0.5" CornerRadius="4" CaptionHeight="0" UseAeroCaptionButtons="False" ResizeBorderThickness="7"/>
     </WindowChrome.WindowChrome>
 
-    <Window.Resources> 
+    <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/Fonts.xaml"/>
@@ -33,142 +33,105 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid>
-        <Grid.Resources>
-            <ControlTemplate x:Key="windowControls" TargetType="Button" >
+    <Border BorderBrush="#172D13" BorderThickness="2" Background="#F7F7F7">
+        <Grid>
+            <Grid.Resources>
+                <ControlTemplate x:Key="windowControls" TargetType="Button" >
+                    <Grid>
+                        <ContentPresenter x:Name="buttons" Opacity="0.7" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="buttons" Property="Opacity" Value="1"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Grid.Resources>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45" />
+                <RowDefinition Height="46*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--title bar-->
+            <Border BorderThickness="0">
+                <Border.Background>
+                    <SolidColorBrush Color="#8DB48E"/>
+                </Border.Background>
+
+                <!--Window Icon and Title-->
                 <Grid>
-                    <ContentPresenter x:Name="buttons" Opacity="0.7" />
-                </Grid>
-                <ControlTemplate.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter TargetName="buttons" Property="Opacity" Value="1"/>
-                        <Setter Property="Cursor" Value="Hand"/>
-                    </Trigger>
-                </ControlTemplate.Triggers>
-            </ControlTemplate>
-        </Grid.Resources>
-        
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="45" />
-            <RowDefinition Height="46*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-        <!--title bar-->
-        <Border BorderThickness="0">
-            <Border.Background>
-                <SolidColorBrush Color="#EFEFEF"/>
-            </Border.Background>
+                    <!-- Icon -->
+                    <Border Grid.Column="0" Margin ="5 5 0 5">
+                        <Image Source="Resources/Jacobs.png" Height="30" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    </Border>
 
-            <!--Window Icon and Title-->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <!-- Icon -->
-                <Border Grid.Column="0" Margin ="5 5 0 5">
-                    <Image Source="Resources/Jacobs.png" Height="30" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                </Border>
-
-                <!--Title-->
-                <Label FontFamily="{StaticResource Product Sans}" Grid.Column="1" Content="Inertia Calculator" Height="Auto" Width="Auto" FontSize="25"
+                    <!--Title-->
+                    <Label FontFamily="{StaticResource Product Sans}" Grid.Column="1" Content="Inertia Calculator" Height="Auto" Width="Auto" FontSize="25"
                     FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"
                     />
 
-                <!-- Close, Min, Max -->
-                <Grid Grid.Column="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="40"/>
-                        <ColumnDefinition Width="40"/>
-                        <ColumnDefinition Width="40"/>
-                    </Grid.ColumnDefinitions>
-
-
-                    <Button Margin ="0 0 0 5" Grid.Column="1" Command="{Binding MinimizeCommand}" Template="{StaticResource windowControls}">
-                        <Image Source="Images/min.jpg" Stretch="Fill"/>
-                    </Button>
-                    <Button Margin ="0 0 0 5" Grid.Column="2" Command="{Binding MaximizeCommand}" Template="{StaticResource windowControls}">
-                        <Image Source="{Binding Image}" Stretch="Fill"/>
-                    </Button>
-                    <Button Margin ="0 0 2 5" Grid.Column="3" Command="{Binding CloseCommand}" Template="{StaticResource windowControls}">
-                        <Image Source="Images/close.png" Stretch="Fill"/>
-                    </Button>
-                </Grid>
-            </Grid>
-        </Border>
-
-        <!--Main Content -->
-        <Grid Grid.Row="1">
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="10"/>
-            </Grid.ColumnDefinitions>
-
-            <!--User Inputs-->
-            <GroupBox Grid.Column="1" Header="Properties" FontWeight="DemiBold">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="20"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="10"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                    </Grid.RowDefinitions>
-
-                    <!-- Labels in Column 0 of Inner Grid -->
-                    <Label FontFamily="{StaticResource Product Sans}" Grid.Row="1" Grid.Column="0" Content="Section Type" FontWeight="Bold"/>
-                    
-                    <!--Labels for rectangular sections-->
-                    <Label FontFamily="{StaticResource Product Sans}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" 
-                           Grid.Row="2" Grid.Column="0" Content="Width" FontWeight="Bold"/>
-                    <Label FontFamily="{StaticResource Product Sans}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" 
-                           Grid.Row="3" Grid.Column="0" Content="Height" FontWeight="Bold"/>
-                    
-                    <!--Labels for circular sections-->
-
-                    <Label FontFamily="{StaticResource ArchDaughter}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource inversebooleanToVisibilityConverter}}" 
-                            Grid.Row="2" Grid.Column="0" Content="Radius" FontWeight="Bold"/>
-                    <Label FontFamily="{StaticResource ArchDaughter}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource inversebooleanToVisibilityConverter}}" 
-                            Grid.Row="3" Grid.Column="0" Content="Diameter" FontWeight="Bold"/>
-                    
-                    <!-- Alternate Style
-
-                    <Label FontFamily="{StaticResource Product Sans}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource inversebooleanToVisibilityConverter}}" 
-                                Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Content="Radius" FontWeight="Bold" Margin="0,15,0,15"/>
-                     -->
-                    
-                    <Label FontFamily="{StaticResource Product Sans}" Grid.Row="4" Grid.Column="0" Content="Cover" FontWeight="Bold"/>
-
-                    <Grid Grid.Row="6" Grid.Column="0" Grid.RowSpan="5">
-
+                    <!-- Close, Min, Max -->
+                    <Grid Grid.Column="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="40"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Button Margin ="0 0 0 5" Grid.Column="1" Command="{Binding MinimizeCommand}" Template="{StaticResource windowControls}">
+                            <Image Source="Images/min.jpg" Stretch="Fill"/>
+                        </Button>
+                        <Button Margin ="0 0 0 5" Grid.Column="2" Command="{Binding MaximizeCommand}" Template="{StaticResource windowControls}">
+                            <Image Source="{Binding Image}" Stretch="Fill"/>
+                        </Button>
+                        <Button Margin ="0 0 2 5" Grid.Column="3" Command="{Binding CloseCommand}" Template="{StaticResource windowControls}">
+                            <Image Source="Images/close.png" Stretch="Fill"/>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <!--Main Content -->
+            <Grid Grid.Row="1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+
+                <!--User Inputs-->
+                <GroupBox Grid.Column="1" Header="Properties" FontWeight="DemiBold" BorderBrush="#D76F30">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
+
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="*"/>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
@@ -176,35 +139,73 @@
                             <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
 
+                        <!-- Labels in Column 0 of Inner Grid -->
+                        <Label FontFamily="{StaticResource Product Sans}" Grid.Row="1" Grid.Column="0" Content="Section Type" FontWeight="Bold"/>
 
-                        <TextBlock FontFamily="{StaticResource Product Sans}" Grid.Row="0" Grid.Column="0" Text="Rebar A" FontWeight="ExtraBold"/>
-                        <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold"> Rebar
+                        <!--Labels for rectangular sections-->
+                        <Label FontFamily="{StaticResource Product Sans}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" 
+                           Grid.Row="2" Grid.Column="0" Content="Width" FontWeight="Bold"/>
+                        <Label FontFamily="{StaticResource Product Sans}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" 
+                           Grid.Row="3" Grid.Column="0" Content="Height" FontWeight="Bold"/>
+
+                        <!--Labels for circular sections-->
+
+                        <Label FontFamily="{StaticResource ArchDaughter}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource inversebooleanToVisibilityConverter}}" 
+                            Grid.Row="2" Grid.Column="0" Content="Radius" FontWeight="Bold"/>
+                        <Label FontFamily="{StaticResource ArchDaughter}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource inversebooleanToVisibilityConverter}}" 
+                            Grid.Row="3" Grid.Column="0" Content="Diameter" FontWeight="Bold"/>
+
+                        <!-- Alternate Style
+
+                    <Label FontFamily="{StaticResource Product Sans}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource inversebooleanToVisibilityConverter}}" 
+                                Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Content="Radius" FontWeight="Bold" Margin="0,15,0,15"/>
+                     -->
+
+                        <Label FontFamily="{StaticResource Product Sans}" Grid.Row="4" Grid.Column="0" Content="Cover" FontWeight="Bold"/>
+
+                        <Grid Grid.Row="6" Grid.Column="0" Grid.RowSpan="5">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+
+
+                            <TextBlock FontFamily="{StaticResource Product Sans}" Grid.Row="0" Grid.Column="0" Text="Rebar A" FontWeight="ExtraBold"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold"> Rebar
                             I<Run FontSize="7pt" BaselineAlignment="TextBottom">x</Run>
-                        </TextBlock>
-                        <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="Bold"> Rebar
+                            </TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="Bold"> Rebar
                             I<Run FontSize="7pt" BaselineAlignment="TextBottom">y</Run>
-                        </TextBlock>
-                        <TextBlock Grid.Row="3" Grid.Column="0" FontWeight="Bold"> Rebar
+                            </TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="0" FontWeight="Bold"> Rebar
                             r<Run FontSize="7pt" BaselineAlignment="TextBottom">x</Run>
-                        </TextBlock>
-                        <TextBlock Grid.Row="4" Grid.Column="0" FontWeight="Bold"> Rebar
+                            </TextBlock>
+                            <TextBlock Grid.Row="4" Grid.Column="0" FontWeight="Bold"> Rebar
                             r<Run FontSize="7pt" BaselineAlignment="TextBottom">y</Run>
-                        </TextBlock>
+                            </TextBlock>
 
 
-                        <TextBlock FontFamily="{StaticResource Product Sans}" Grid.Row="0" Grid.Column="1" 
+                            <TextBlock FontFamily="{StaticResource Product Sans}" Grid.Row="0" Grid.Column="1" 
                                 Background="#EFEFEF" FontWeight="ExtraBold" Margin="0 2 0 2"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
-                        <TextBlock Grid.Row="2" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
-                        <TextBlock Grid.Row="3" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
-                        <TextBlock Grid.Row="4" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                            <TextBlock Grid.Row="3" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                            <TextBlock Grid.Row="4" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
 
 
-                    </Grid>
-                    
+                        </Grid>
 
-                    <!--Table in Column 0 of Inner Grid-->
-                    <DataGrid Grid.Row="5" Grid.ColumnSpan="3" Margin="5,5,5,5" 
+
+                        <!--Table in Column 0 of Inner Grid-->
+                        <DataGrid Grid.Row="5" Grid.ColumnSpan="3" Margin="5,5,5,5" 
                               CanUserAddRows="True" CanUserDeleteRows="True" 
                               VerticalGridLinesBrush="AliceBlue"
                               GridLinesVisibility="Vertical"
@@ -215,78 +216,78 @@
                               SelectionMode="Single"
                               Background="White">
 
-                        <DataGrid.Resources>
-                            <Style x:Key="ColumnHeaderStyle" TargetType="DataGridColumnHeader">
-                                <Setter Property="Background" Value="#EFEFEF"/>
-                            </Style>
-                        </DataGrid.Resources>
-                        <DataGrid.ColumnHeaderStyle>
-                            <StaticResource ResourceKey="ColumnHeaderStyle" />
-                        </DataGrid.ColumnHeaderStyle>
+                            <DataGrid.Resources>
+                                <Style x:Key="ColumnHeaderStyle" TargetType="DataGridColumnHeader">
+                                    <Setter Property="Background" Value="#EFEFEF"/>
+                                </Style>
+                            </DataGrid.Resources>
+                            <DataGrid.ColumnHeaderStyle>
+                                <StaticResource ResourceKey="ColumnHeaderStyle" />
+                            </DataGrid.ColumnHeaderStyle>
 
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Row" Width="*" IsReadOnly="True" Binding="{Binding Count}">
-                                <DataGridTextColumn.CellStyle>
-                                    <Style TargetType="DataGridCell">
-                                        <Setter Property="Background" Value="#EFEFEF" />
-                                        <Setter Property="Padding" Value="4,2,2,2" />
-                                    </Style>
-                                </DataGridTextColumn.CellStyle>
-                            </DataGridTextColumn>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Row" Width="*" IsReadOnly="True" Binding="{Binding Count}">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="Background" Value="#EFEFEF" />
+                                            <Setter Property="Padding" Value="4,2,2,2" />
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
 
-                            <DataGridTextColumn Header="R Diameter" Binding="{Binding Dia}" Width="2*"/>
-                            <DataGridTextColumn Header="Number" Binding="{Binding Num}" Width="2*"/>
-                            <DataGridTextColumn Header="Delta Y" Binding="{Binding DeltaY}" Width="2*"/>
-                            <DataGridTemplateColumn Header="Delete" Width="*">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Content="Delete" Command="Delete"/>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                                <DataGridTextColumn Header="R Diameter" Binding="{Binding Dia}" Width="2*"/>
+                                <DataGridTextColumn Header="Number" Binding="{Binding Num}" Width="2*"/>
+                                <DataGridTextColumn Header="Delta Y" Binding="{Binding DeltaY}" Width="2*"/>
+                                <DataGridTemplateColumn Header="Delete" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Delete" Command="Delete"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
 
-                    <!--Controls in Column 2 -->
-                    <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" CornerRadius="2">
-                        <ComboBox x:Name="section" Margin="0 2 5 2"  Padding="2 2 0 0"  
+                        <!--Controls in Column 2 -->
+                        <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" CornerRadius="2">
+                            <ComboBox x:Name="section" Margin="0 2 5 2"  Padding="2 2 0 0"  
                               Loaded="section_Loaded"
                               SelectedItem="{Binding MySelectedItem}" >
-                            <ComboBoxItem Tag="CC">Circular Column</ComboBoxItem>
-                            <ComboBoxItem Tag="RC">Rectangular Column</ComboBoxItem>
-                            <ComboBoxItem Tag="RB">Rectangular Beam</ComboBoxItem>
-                        </ComboBox>
-                    </Border>
-                    
-                    
-                    <!--Input fields for rectangular sections-->
-                    <Border Visibility="{Binding Option, 
+                                <ComboBoxItem Tag="CC">Circular Column</ComboBoxItem>
+                                <ComboBoxItem Tag="RC">Rectangular Column</ComboBoxItem>
+                                <ComboBoxItem Tag="RB">Rectangular Beam</ComboBoxItem>
+                            </ComboBox>
+                        </Border>
+
+
+                        <!--Input fields for rectangular sections-->
+                        <Border Visibility="{Binding Option, 
                         Converter={StaticResource booleanToVisibilityConverter}}" Margin="0 2 5 2"  
                             Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
-                        <TextBox Padding="2 2 0 0"/>
-                    </Border>
-                    <Border Visibility="{Binding Option, 
+                            <TextBox Padding="2 2 0 0"/>
+                        </Border>
+                        <Border Visibility="{Binding Option, 
                         Converter={StaticResource booleanToVisibilityConverter}}" Margin="0 2 5 2"  
                             Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
-                        <TextBox Padding="2 2 0 0"/>
-                    </Border>
+                            <TextBox Padding="2 2 0 0"/>
+                        </Border>
 
-                    <!--Input field for circular column-->
+                        <!--Input field for circular column-->
 
-                    
-                    
-                    <Border Visibility="{Binding Option, 
+
+
+                        <Border Visibility="{Binding Option, 
                         Converter={StaticResource inversebooleanToVisibilityConverter}}" Margin="0 2 5 2"  
                             Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
-                        <TextBox x:Name="Radius" Padding="2 2 0 0" Text="{Binding Radius}" />
-                    </Border>
-                    <Border Visibility="{Binding Option, 
+                            <TextBox x:Name="Radius" Padding="2 2 0 0" Text="{Binding Radius}" />
+                        </Border>
+                        <Border Visibility="{Binding Option, 
                         Converter={StaticResource inversebooleanToVisibilityConverter}}" Margin="0 2 5 2"  
                             Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
-                        <TextBox x:Name="Dia" Background="#EFEFEF" Padding="2 2 0 0" Text="{Binding Diameter}"/>
-                    </Border> 
-                    
-                    <!-- Alternate Style
+                            <TextBox x:Name="Dia" Background="#EFEFEF" Padding="2 2 0 0" Text="{Binding Diameter}"/>
+                        </Border>
+
+                        <!-- Alternate Style
                     <Border Visibility="{Binding Option, 
                         Converter={StaticResource inversebooleanToVisibilityConverter}}" Margin="0,15,0,15"  
                             Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
@@ -295,75 +296,97 @@
                     -->
 
 
-                    <Border Margin="0 2 5 2"  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
-                        <TextBox Padding="2 2 0 0"/>
-                    </Border>
+                        <Border Margin="0 2 5 2"  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
+                            <TextBox Padding="2 2 0 0"/>
+                        </Border>
 
 
-                    <!-- Labels in Column 2 of Inner Grid -->
-                    <Grid Grid.Column="2" Grid.Row="6" Grid.RowSpan="5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                        </Grid.RowDefinitions>
+                        <!-- Labels in Column 2 of Inner Grid -->
+                        <Grid Grid.Column="2" Grid.Row="6" Grid.RowSpan="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
 
-                        <TextBlock FontFamily="{StaticResource Product Sans}" Grid.Row="0" Grid.Column="0" 
+                            <TextBlock FontFamily="{StaticResource Product Sans}" Grid.Row="0" Grid.Column="0" 
                                    Text="Total A" FontWeight="ExtraBold"/>
-                        <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold"> Total
+                            <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold"> Total
                                 I<Run FontSize="7pt" BaselineAlignment="TextBottom">x</Run>
-                        </TextBlock>
-                        <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="Bold"> Total
+                            </TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="Bold"> Total
                                 I<Run FontSize="7pt" BaselineAlignment="TextBottom">y</Run>
-                        </TextBlock>
-                        <TextBlock Grid.Row="3" Grid.Column="0" FontWeight="Bold"> Total
+                            </TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="0" FontWeight="Bold"> Total
                                 r<Run FontSize="7pt" BaselineAlignment="TextBottom">x</Run>
-                        </TextBlock>
-                        <TextBlock Grid.Row="4" Grid.Column="0" FontWeight="Bold"> Total
+                            </TextBlock>
+                            <TextBlock Grid.Row="4" Grid.Column="0" FontWeight="Bold"> Total
                             r<Run FontSize="7pt" BaselineAlignment="TextBottom">y</Run>
-                        </TextBlock>
+                            </TextBlock>
 
-                        <TextBlock FontFamily="{StaticResource Product Sans}" Grid.Row="0" Grid.Column="1" 
+                            <TextBlock FontFamily="{StaticResource Product Sans}" Grid.Row="0" Grid.Column="1" 
                                    Background="#EFEFEF" FontWeight="ExtraBold" Margin="0 2 0 2"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
-                        <TextBlock Grid.Row="2" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
-                        <TextBlock Grid.Row="3" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
-                        <TextBlock Grid.Row="4" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                            <TextBlock Grid.Row="3" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                            <TextBlock Grid.Row="4" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                        </Grid>
+
                     </Grid>
-                    
-                </Grid>
-            </GroupBox>
+                </GroupBox>
 
-            <!--Diagram-->
+                <!--Diagram-->
+                <GroupBox Margin="10 0 0 0" Grid.Column="3" Header="Diagram" FontWeight="DemiBold" BorderBrush="#D76F30">
+                    <Grid>
+                        <Canvas x:Name="Rectangle" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" Width="200" Height="200">
+                            <!-- Rectangle representing the section -->
+                            <Rectangle Width="191" Height="191" Stroke="Black" StrokeThickness="3" Fill="LightGray" HorizontalAlignment="Center" Canvas.Left="-1" Canvas.Top="-1" VerticalAlignment="Center"/>
 
-            <GroupBox Margin="10 0 0 0" Grid.Column="3" Header="Diagram" FontWeight="DemiBold">
-                <Canvas Width="200" Height="200">
-                    <!-- Circle representing the section -->
-                    <Rectangle Width="191" Height="191" Stroke="Black" StrokeThickness="3" Fill="LightGray" HorizontalAlignment="Center" Canvas.Left="-1" Canvas.Top="-1" VerticalAlignment="Center"/>
+                            <!-- Rebars -->
+                            <Ellipse Width="10" Height="10" Fill="Black" Canvas.Left="40" Canvas.Top="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Ellipse Width="10" Height="10" Fill="Black" Canvas.Left="95" Canvas.Top="15" RenderTransformOrigin="2.4,0.585"/>
+                            <Ellipse Width="10" Height="10" Fill="Black" Canvas.Left="150" Canvas.Top="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                    <!-- Rebars -->
-                    <Ellipse Width="10" Height="10" Fill="Black" Canvas.Left="95" Canvas.Top="15" RenderTransformOrigin="2.4,0.585"/>
-                    <Ellipse Width="10" Height="10" Fill="Black" Canvas.Left="150" Canvas.Top="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <Ellipse Width="10" Height="10" Fill="Black" Canvas.Left="40" Canvas.Top="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <!-- Coordinate axes -->
+                            <Line X1="0" Y1="0" X2="0" Y2="100" Stroke="Green" StrokeThickness="2"/>
+                            <Line X1="100" Y1="0" X2="0" Y2="0" Stroke="Red" StrokeThickness="2" HorizontalAlignment="Center" Canvas.Left="-1" VerticalAlignment="Center" Width="101"/>
 
-                    <!-- Coordinate axes -->
-                    <Line X1="0" Y1="0" X2="0" Y2="100" Stroke="Green" StrokeThickness="2"/>
-                    <Line X1="100" Y1="0" X2="0" Y2="0" Stroke="Red" StrokeThickness="2" HorizontalAlignment="Center" Canvas.Left="-1" VerticalAlignment="Center" Width="101"/>
+                            <!-- X axis label -->
+                            <TextBlock Text="X" Foreground="Red" Canvas.Left="93" Canvas.Top="-21" RenderTransformOrigin="-13.01,-5.753"/>
+                            <!-- Y axis label -->
+                            <TextBlock Text="Y" Foreground="Green" Canvas.Left="-18" Canvas.Top="84"/>
+                        </Canvas>
 
-                    <!-- X axis label -->
-                    <TextBlock Text="X" Foreground="Red" Canvas.Left="93" Canvas.Top="-21" RenderTransformOrigin="-13.01,-5.753"/>
-                    <!-- Y axis label -->
-                    <TextBlock Text="Y" Foreground="Green" Canvas.Left="-18" Canvas.Top="84"/>
-                </Canvas>
-            </GroupBox>
+                        <Canvas x:Name="Circle" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource inversebooleanToVisibilityConverter}}" Width="200" Height="200">
+                            <!-- Circle representing the section -->
+                            <Ellipse Width="200" Height="200" Stroke="Black" StrokeThickness="3" Fill="LightGray" HorizontalAlignment="Center" Canvas.Left="-1" Canvas.Top="-1" VerticalAlignment="Center"/>
+
+                            <!-- Rebars -->
+                            <Ellipse Width="10" Height="10" Fill="Black" Canvas.Left="40" Canvas.Top="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Ellipse Width="10" Height="10" Fill="Black" Canvas.Left="95" Canvas.Top="0" RenderTransformOrigin="2.4,0.585"/>
+                            <Ellipse Width="10" Height="10" Fill="Black" Canvas.Left="150" Canvas.Top="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                            <!-- Coordinate axes -->
+                            <Line X1="100" Y1="0" X2="100" Y2="100" Stroke="Green" StrokeThickness="2"/>
+                            <Line X1="100" Y1="0" X2="200" Y2="0" Stroke="Red" StrokeThickness="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                            <!-- X axis label -->
+                            <TextBlock Text="X" Foreground="Red" Canvas.Left="192" Canvas.Top="-21" RenderTransformOrigin="-13.01,-5.753" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <!-- Y axis label -->
+                            <TextBlock Text="Y" Foreground="Green" Canvas.Left="87" Canvas.Top="83" RenderTransformOrigin="15.496,0.515"/>
+                        </Canvas>
+                    </Grid>
+                </GroupBox>
+
+            </Grid>
 
         </Grid>
+    </Border>
 
-    </Grid>
 </Window>
