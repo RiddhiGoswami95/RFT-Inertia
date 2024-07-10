@@ -17,7 +17,7 @@
         ResizeMode="CanResizeWithGrip"
         x:Name="AppWindow" 
         Icon="Resources/logo.png"
-        Title="Inertia Calculator" Height="520" Width="750">
+        Title="Inertia Calculator" Height="600" Width="800">
 
     <WindowChrome.WindowChrome>
         <WindowChrome GlassFrameThickness="0.5" CornerRadius="4" CaptionHeight="0" UseAeroCaptionButtons="False" ResizeBorderThickness="7"/>
@@ -130,6 +130,7 @@
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
@@ -146,6 +147,8 @@
                            Grid.Row="2" Grid.Column="0" Content="Width" FontWeight="Bold"/>
                         <Label FontFamily="{StaticResource ProductSans}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" 
                            Grid.Row="3" Grid.Column="0" Content="Height" FontWeight="Bold"/>
+                        <Label FontFamily="{StaticResource ProductSans}" Visibility="{Binding Option, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource booleanToVisibilityConverter}}" 
+                            Grid.Row="5" Grid.Column="0" Content="Side Cover" FontWeight="Bold"/>
 
                         <!--Labels for circular sections-->
 
@@ -162,7 +165,7 @@
 
                         <Label FontFamily="{StaticResource ProductSans}" Grid.Row="4" Grid.Column="0" Content="Cover" FontWeight="Bold"/>
 
-                        <Grid Grid.Row="6" Grid.Column="0" Grid.RowSpan="5">
+                        <Grid Grid.Row="7" Grid.Column="0" Grid.RowSpan="5">
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -192,19 +195,19 @@
                             </TextBlock>
 
 
-                            <TextBlock FontFamily="{StaticResource ProductSans}" Grid.Row="0" Grid.Column="1" 
+                            <TextBlock x:Name="RA" FontFamily="{StaticResource ProductSans}" Grid.Row="0" Grid.Column="1" 
                                 Background="#EFEFEF" FontWeight="ExtraBold" Margin="0 2 0 2"/>
-                            <TextBlock Grid.Row="1" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
-                            <TextBlock Grid.Row="2" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
-                            <TextBlock Grid.Row="3" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
-                            <TextBlock Grid.Row="4" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                            <TextBlock x:Name="RIY" Grid.Row="1" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                            <TextBlock x:Name="RIX" Grid.Row="2" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                            <TextBlock x:Name="RRX" Grid.Row="3" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                            <TextBlock x:Name="RRY" Grid.Row="4" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
 
 
                         </Grid>
 
 
                         <!--Table in Column 0 of Inner Grid-->
-                        <DataGrid Grid.Row="5" Grid.ColumnSpan="3" Margin="5,5,5,5" 
+                        <DataGrid Grid.Row="6" Grid.ColumnSpan="3" Margin="10,10,10,10" 
                               CanUserAddRows="True" CanUserDeleteRows="True" 
                               VerticalGridLinesBrush="AliceBlue"
                               GridLinesVisibility="Vertical"
@@ -263,18 +266,20 @@
                         <Border Visibility="{Binding Option, 
                         Converter={StaticResource booleanToVisibilityConverter}}" Margin="0 2 5 2"  
                             Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
-                            <TextBox Padding="2 2 0 0"/>
+                            <TextBox x:Name="Width" Padding="2 2 0 0"/>
                         </Border>
                         <Border Visibility="{Binding Option, 
                         Converter={StaticResource booleanToVisibilityConverter}}" Margin="0 2 5 2"  
                             Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
-                            <TextBox Padding="2 2 0 0"/>
+                            <TextBox x:Name="Height" Padding="2 2 0 0"/>
+                        </Border>
+                        <Border Visibility="{Binding Option, 
+                        Converter={StaticResource booleanToVisibilityConverter}}" Margin="0 2 5 2"  
+                            Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
+                            <TextBox x:Name="Side_Cover" Padding="2 2 0 0"/>
                         </Border>
 
-                        <!--Input field for circular column-->
-
-
-
+                        <!--Input field for circular column--> 
                         <Border Visibility="{Binding Option, 
                         Converter={StaticResource inversebooleanToVisibilityConverter}}" Margin="0 2 5 2"  
                             Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0">
@@ -301,7 +306,7 @@
 
 
                         <!-- Labels in Column 2 of Inner Grid -->
-                        <Grid Grid.Column="2" Grid.Row="6" Grid.RowSpan="5">
+                        <Grid Grid.Column="2" Grid.Row="7" Grid.RowSpan="5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -329,12 +334,12 @@
                             r<Run FontSize="7pt" BaselineAlignment="TextBottom">y</Run>
                             </TextBlock>
 
-                            <TextBlock FontFamily="{StaticResource ProductSans}" Grid.Row="0" Grid.Column="1" 
+                            <TextBlock x:Name="TA" FontFamily="{StaticResource ProductSans}" Grid.Row="0" Grid.Column="1" 
                                    Background="#EFEFEF" FontWeight="ExtraBold" Margin="0 2 0 2"/>
-                            <TextBlock Grid.Row="1" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
-                            <TextBlock Grid.Row="2" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
-                            <TextBlock Grid.Row="3" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
-                            <TextBlock Grid.Row="4" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                            <TextBlock x:Name="TIX" Grid.Row="1" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                            <TextBlock x:Name="TIY" Grid.Row="2" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                            <TextBlock x:Name="TRX" Grid.Row="3" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
+                            <TextBlock x:Name="TRY" Grid.Row="4" Grid.Column="1" Background="#EFEFEF" Margin="0 0 0 2" FontWeight="Bold"/>
                         </Grid>
 
                     </Grid>
